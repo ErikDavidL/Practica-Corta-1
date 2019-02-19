@@ -1,0 +1,45 @@
+Algoritmo juegoCartas
+	Definir dineroInicial Como Real
+	Definir apuesta Como Real
+	Definir numeroUno Como Entero
+	Definir numeroDos Como Entero
+	Definir numeroTres Como Entero
+	Escribir 'Ingrese la cantidad de dinero para apostar: '
+	Leer dineroInicial
+	Mientras dineroInicial>0 Hacer
+		numeroUno = azar(13)+1
+		numeroDos = azar(13)+1
+		numeroTres = azar(13)+1
+		Si numeroUno=numeroDos Entonces
+			numeroUno = azar(13)+1
+		SiNo
+			Si (((numeroUno-numeroDos)=1) O ((numeroDos-numeroUno)=1)) Entonces
+				numeroDos = azar(13)+1
+			SiNo
+				Escribir 'Carta 1 ',numeroUno
+				Escribir 'Carta 2 ',numeroDos
+				Escribir '¿Cuánto desea apostar?: '
+				Leer apuesta
+				Escribir 'Su carta es ',numeroTres
+				Si ((numeroTres<numeroDos Y numeroTres>numeroUno) O (numeroTres>numeroDos Y numeroTres<numeroUno)) Entonces
+					dineroInicial = dineroInicial+apuesta
+					Escribir 'Ha ganado la jugada'
+					Escribir 'Dinero actual en juego: ',dineroInicial
+				SiNo
+					dineroInicial = dineroInicial-apuesta
+					Si (dineroInicial<=0) Entonces
+						dineroInicial = 0
+						Escribir 'Ya no cuenta con dinero para jugar'
+					SiNo
+						Escribir 'Ha perdido la jugada'
+						Escribir 'Dinero actual en juego: ',dineroInicial
+					FinSi
+				FinSi
+			FinSi
+		FinSi
+	FinMientras
+FinAlgoritmo
+
+
+
+

@@ -1,0 +1,150 @@
+Funcion lanzamientos
+	Escribir 'TIPOS DE LANZAMIENTO'
+	Escribir '1. LANZAMIENTO LARGO (3 PUNTOS)'
+	Escribir '2. LANZAMIENTO CORTO (2 PUNTOS)'
+	Escribir 'INGRESE UNA OPCION DE LANZAMIENTO: '
+	Leer opcionTiro
+FinFuncion
+
+Funcion defensaJugador
+	Escribir 'TIPOS DE DEFENSA:'
+	Escribir '1. DEFENSA CUERPO A CUERPO'
+	Escribir '2. DEFENSA FUERTE'
+	Escribir 'INGRESE UNA OPCION DE DEFENSA: '
+	Leer opcionDefensa
+FinFuncion
+
+Funcion puntosFalta
+	falta <- azar(100)+1
+	Escribir '¡FALTA COMETIDA¡'
+	Si falta<=90 Entonces
+		Escribir 'Falta anotada, has hecho 2 puntos'
+		puntosFaltas <- 2
+	SiNo
+		Escribir 'Has fallado la falta'
+		puntosFaltas <- 0
+	FinSi
+FinFuncion
+
+Funcion combinacionPuntos
+	probabilidadAnotar <- azar(100)+1
+	probabilidadFalta <- azar(100)+1
+	Si (opcionTiro=1 Y opcionDefensa=1) Entonces
+		Si probabilidadAnotar<=50 Entonces
+			puntosAnotados <- 3
+		SiNo
+			puntosAnotados <- 0
+		FinSi
+	FinSi
+	Si (opcionTiro=1 Y opcionDefensa=2) Entonces
+		Si probabilidadAnotar<=35 Entonces
+			puntosAnotados <- 3
+		SiNo
+			puntosAnotados <- 0
+		FinSi
+	FinSi
+	Si (opcionTiro=2 Y opcionDefensa=1) Entonces
+		Si probabilidadAnotar<=65 Entonces
+			puntosAnotados <- 2
+		SiNo
+			puntosAnotados <- 0
+		FinSi
+	FinSi
+	Si (opcionTiro=2 Y opcionDefensa=2) Entonces
+		Si probabilidadAnotar<=50 Entonces
+			puntosAnotados <- 2
+		SiNo
+			puntosAnotados <- 0
+		FinSi
+	FinSi
+FinFuncion
+
+Funcion combinacionFaltas
+	Si opcionDefensa=1 Entonces
+		Si probabilidadFalta<=35 Entonces
+			puntosFalta
+		FinSi
+	SiNo
+		Si probabilidadFalta<=65 Entonces
+			puntosFalta
+		FinSi
+	FinSi
+FinFuncion
+
+Algoritmo basketball
+	Definir opcionTiro,puntosAnotados,probabilidadAnotar,probabilidadFalta Como Entero
+	Definir opcionDefensa,puntosFaltas,falta,puntosJugador1,puntosJugador2 Como Entero
+	Escribir 'Ingrese su nombre '
+	Leer jugadorUno
+	Escribir 'Ingrese su nombre '
+	Leer jugadorDos
+	inicioJuego <- azar(2)+1
+	Si inicioJuego==1 Entonces
+		Escribir 'El primer turno será para: ',jugadorUno
+		Escribir 'El segundo turno será para: ',jugadorDos
+	SiNo
+		Escribir 'El primer turno será para: ',jugadorDos
+		Escribir 'El segundo turno será para: ',jugadorUno
+	FinSi
+	Escribir '¿CUÁNTOS TURNOS TENDRÁ CADA JUGADOR?: '
+	Leer turno
+	turno <- turno*2
+	Mientras (turno>0) Hacer
+		Escribir 'QUEDAN ',turno,' TURNOS'
+		Si inicioJuego=1 Entonces
+			Si turno MOD 2=0 Entonces
+				Escribir 'TURNO DE LANZAMIENTO PARA: ',jugadorUno
+				Escribir 'TURNO DE DEFENSA PARA:     ',jugadorDos
+				lanzamientos
+				defensaJugador
+				combinacionPuntos
+				combinacionFaltas
+				puntosJugador1 <- puntosJugador1+(puntosAnotados+puntosFaltas)
+			SiNo
+				Escribir 'TURNO DE LANZAMIENTO PARA: ',jugadorDos
+				Escribir 'TURNO DE DEFENSA PARA:     ',jugadorUno
+				lanzamientos
+				defensaJugador
+				combinacionPuntos
+				combinacionFaltas
+				puntosJugador2 <- puntosJugador2+(puntosAnotados+puntosFaltas)
+			FinSi
+		SiNo
+			Si turno MOD 2=0 Entonces
+				Escribir 'TURNO DE LANZAMIENTO PARA: ',jugadorDos
+				Escribir 'TURNO DE DEFENSA PARA:     ',jugadorUno
+				lanzamientos
+				defensaJugador
+				combinacionPuntos
+				combinacionFaltas
+				puntosJugador2 <- puntosJugador2+(puntosAnotados+puntosFaltas)
+			SiNo
+				Escribir 'TURNO DE LANZAMIENTO PARA: ',jugadorUno
+				Escribir 'TURNO DE DEFENSA PARA:     ',jugadorDos
+				lanzamientos
+				defensaJugador
+				combinacionPuntos
+				combinacionFaltas
+				puntosJugador1 <- puntosJugador1+(puntosAnotados+puntosFaltas)
+			FinSi
+		FinSi
+		Escribir 'PUNTOS DE ',jugadorUno,' : ',puntosJugador1
+		Escribir 'PUNTOS DE ',jugadorDos,' : ',puntosJugador2
+		turno <- turno-1
+		Si puntosJugador1<puntosJugador2 Entonces
+			Escribir 'El jugador ',jugadorDos,' ha ganado el partido'
+		FinSi
+		Si puntosJugador1=puntosJugador2 Entonces
+			Escribir 'El partido quedó en empate'
+		FinSi
+		Si puntosJugador1<puntosJugador2 Entonces
+			Escribir 'El jugador ',jugadorUno,' ha ganado el partido'
+		FinSi
+	FinMientras
+FinAlgoritmo
+
+
+
+
+
+

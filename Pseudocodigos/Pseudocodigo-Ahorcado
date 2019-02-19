@@ -1,0 +1,70 @@
+Algoritmo Ahorcado
+	Definir intentoLetra Como Caracter
+	Definir palabraInicial, palabraOculta,palabraIntentos,palabraconLineas Como Caracter
+	Definir oportunidades,i,x,w Como Entero
+	Dimension intentoLetra[100]
+	
+	Escribir "INGRESE UNA PALABRA: "
+	Leer palabraInicial	
+	palabraInicial = Minusculas(palabraInicial)
+	Dimension palabraOculta(Longitud(palabraInicial))
+	Dimension palabraconLineas(Longitud(palabraInicial))
+		Para i<-1 Hasta Longitud(palabraInicial) Con Paso i+1 Hacer
+			palabraOculta[i] = '-'
+			palabraconLineas[i]= '-'
+		Fin Para
+	Escribir "La palabra oculta es"	
+	Escribir palabraOculta[i]
+	
+	Para x<-1 Hasta Longitud(intentoLetra[100]) Con Paso x+1 Hacer
+		Escribir "Ingrese una letra: "
+		Leer intentoLetra[x]
+		
+		Si intentoLetra[x] = palabraInicial Entonces
+			Escribir "Has adivinado la palabra"
+		Fin Si
+		
+		Si intentoLetra[x] = palabraInicial Entonces
+			//leer la variable ingresada dentro del arreglo, despues sustituir en un arreglo nuevo
+			Para w<-1 Hasta Longitud(palabraInicial) Con Paso w+1 Hacer			
+				palabraconLineas[w] = intentoLetra[x] 
+			Fin Para
+			Definir palabraJuego Como Caracter
+			Para z<-1 Hasta Longitud(palabraInicial) Con Paso z+1 Hacer
+				Escribir "Palabra oculta: " palabraJuego
+			Fin Para
+		SiNo
+			Escribir "No es una letra de la palabra"
+			Escribir "Palabra oculta: " palabraIntentos
+			oportunidades= oportunidades+1
+			Si oportunidades=1 Entonces
+				Escribir "Te quedan 9 oportunidades"
+				//se empieza a dibujar el ahorcado 
+			Fin Si
+			
+			Si oportunidades=2 Entonces
+				Escribir "Te quedan 8 oportunidades"
+				//se empieza a dibujar el ahorcado con mas partes 
+			Fin Si
+			//hacer el if hasta que llegue a 10, en ese caso pasa esto
+			Si oportunidades=10 Entonces
+				Escribir "Has perdido el juego"
+				//dibujo del ahorcado completo 
+				Escribir "La palabra era " palabraInicial
+			Fin Si
+			
+		Fin Si
+		
+		
+	Fin Para
+	
+	
+FinAlgoritmo
+
+
+
+
+
+
+
+

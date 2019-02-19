@@ -1,0 +1,27 @@
+Algoritmo menu
+    Repetir
+        Limpiar Pantalla
+        Escribir "SALA DE JUEGOS"
+        Escribir "   1. EL AHORCADO"
+        Escribir "   2. BASKETBALL"
+        Escribir "   3. JUEGO DE CARTAS"
+        Escribir "   4. HANOI"
+        Escribir "   5. SALIR"
+        Escribir "SELECCIONE EL NUMERO DEL JUEGO QUE DESEE: "
+        Leer opc
+        Segun opc Hacer
+            1:
+                Escribir "LLAMAR A METODO DEL AHORCADO"
+            2:
+                Escribir "LLAMAR A METODO DE BASKETBALL"
+            3:
+                Escribir "LLAMAR A METODO DE JUEGO DE CARTAS"
+            4:
+                Escribir "LLAMAR AL METODO DE HANOI"
+            5:			
+            De otro modo:
+                Escribir "SALIR"
+        FinSegun
+        Esperar Tecla
+    Hasta Que OPC = 5
+FinAlgoritmo
